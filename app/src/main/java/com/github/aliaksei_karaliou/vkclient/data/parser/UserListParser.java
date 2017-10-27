@@ -10,13 +10,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
-public class UserListParser implements JsonParser<Collection<User>> {
+public class UserListParser implements JsonParser<List<User>> {
 
     @Override
-    public Collection<User> parse(final String pJson) throws JSONException {
-        final Collection<User> users = new ArrayList<>();
+    public List<User> parse(final String pJson) throws JSONException {
+        final List<User> users = new ArrayList<>();
         final JsonParser<User> userParser = new UserParser();
 
         final JSONArray responseArray = new JSONObject(pJson).getJSONArray(UrlParameters.RESPONSE);

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/item_dialog_image"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        tools:src="@mipmap/ic_launcher_round"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center"
+        android:layout_toEndOf="@+id/item_dialog_image"
+        android:layout_toRightOf="@+id/item_dialog_image"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_dialog_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="52dp"
+            android:layout_marginRight="52dp"
+            android:lines="1"
+            android:textColor="@android:color/black"
+            tools:text="Aliaksei Karaliou"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/item_dialog_secondary_image"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                tools:src="@mipmap/ic_launcher"/>
+
+            <TextView
+                android:id="@+id/item_dialog_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="52dp"
+                android:layout_marginRight="52dp"
+                android:lines="1"
+                tools:text="Aliaksei Karaliou"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_dialog_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/linearLayout"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        tools:text="12:32"/>
+
+
+</RelativeLayout>

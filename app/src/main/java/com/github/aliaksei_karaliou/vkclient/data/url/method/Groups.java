@@ -1,12 +1,11 @@
 package com.github.aliaksei_karaliou.vkclient.data.url.method;
 
-public enum Messages implements Method {
-    GET_DIALOGS("messages.getDialogs"),
-    GET_CHAT("messages.getChat");
+public enum Groups implements Method {
+    GET_BY_ID("groups.getById");
 
     private final String mValue;
 
-    Messages(final String pValue) {
+    Groups(final String pValue) {
         mValue = pValue;
     }
 
@@ -14,5 +13,4 @@ public enum Messages implements Method {
     public String getValue() {
         return mValue;
     }
-
 }

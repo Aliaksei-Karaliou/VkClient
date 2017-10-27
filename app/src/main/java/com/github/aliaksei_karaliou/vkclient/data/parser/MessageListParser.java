@@ -9,16 +9,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 
 import static com.github.aliaksei_karaliou.vkclient.data.url.UrlParameters.ITEMS;
 import static com.github.aliaksei_karaliou.vkclient.data.url.UrlParameters.RESPONSE;
 
-public class MessageListParser implements JsonParser<Collection<Message>> {
+public class MessageListParser implements JsonParser<List<Message>> {
 
     @Override
-    public Collection<Message> parse(final String pJson) throws JSONException {
-        final Collection<Message> messages = new ArrayList<>();
+    public List<Message> parse(final String pJson) throws JSONException {
+        final List<Message> messages = new ArrayList<>();
         final JsonParser<Message> parser = new MessageParser();
 
         final JSONArray jsonArray = new JSONObject(pJson).getJSONObject(RESPONSE).getJSONArray(ITEMS);

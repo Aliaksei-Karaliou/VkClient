@@ -9,14 +9,13 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
+import static com.github.aliaksei_karaliou.vkclient.data.url.UrlParameters.CHAT_ID;
 import static com.github.aliaksei_karaliou.vkclient.data.url.UrlParameters.ITEMS;
 import static com.github.aliaksei_karaliou.vkclient.data.url.UrlParameters.MESSAGE;
 import static com.github.aliaksei_karaliou.vkclient.data.url.UrlParameters.RESPONSE;
-import static com.github.aliaksei_karaliou.vkclient.data.url.UrlParameters.USER_ID;
 
-public class MessageGroupIdsParser implements JsonParser<Collection<Long>> {
+public class MessageChatIdParser implements JsonParser<Collection<Long>> {
 
     @Override
     public Collection<Long> parse(final String pJson) throws JSONException {
@@ -26,9 +25,9 @@ public class MessageGroupIdsParser implements JsonParser<Collection<Long>> {
         final Iterable<String> iterable = new JsonIterable(jsonArray);
 
         for (final String messageJson : iterable) {
-            final long userId = new JSONObject(messageJson).getJSONObject(MESSAGE).getLong(USER_ID);
-            if (userId < 0) {
-                ids.add(-userId);
+            final JSONObject message = new JSONObject(messageJson).getJSONObject(MESSAGE);
+            if (message.has(CHAT_ID)) {
+                ids.add(message.getLong(CHAT_ID));
             }
         }
 

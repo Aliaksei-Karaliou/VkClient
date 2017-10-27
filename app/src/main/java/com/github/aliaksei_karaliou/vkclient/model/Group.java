@@ -1,19 +1,17 @@
 package com.github.aliaksei_karaliou.vkclient.model;
 
-public interface Chat extends Receiver {
+public interface Group extends Receiver {
 
-    int PEER_OFFSET = 2000000000;
-
-    final class Impl implements Chat {
+    final class Impl implements Group {
 
         private final String mFullName;
         private final String mPhotoUrl;
         private final long mId;
 
         private Impl(final Builder pBuilder) {
-            mId = pBuilder.mId;
             mFullName = pBuilder.mFullName;
             mPhotoUrl = pBuilder.mPhotoUrl;
+            mId = pBuilder.mId;
         }
 
         @Override
@@ -28,7 +26,7 @@ public interface Chat extends Receiver {
 
         @Override
         public long getPeerId() {
-            return PEER_OFFSET + mId;
+            return -mId;
         }
 
         @Override
@@ -54,16 +52,16 @@ public interface Chat extends Receiver {
         }
 
         public Builder setId(final long pId) {
-            if (pId > 0 && pId < PEER_OFFSET) {
+            if (pId > 0) {
                 mId = pId;
                 return this;
-            } else {
-                throw new IllegalArgumentException("chat id is positive and cannot be larger than " + PEER_OFFSET);
             }
+            throw new IllegalArgumentException("Group id is bigger than 0");
         }
 
-        public Chat build() {
+        public Group build() {
             return new Impl(this);
         }
     }
+
 }

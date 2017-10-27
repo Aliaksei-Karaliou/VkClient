@@ -13,11 +13,12 @@ import com.github.aliaksei_karaliou.vkclient.data.url.UrlParameters;
 import com.github.aliaksei_karaliou.vkclient.data.url.method.Users;
 import com.github.aliaksei_karaliou.vkclient.model.User;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.List;
 
 public class UserManager {
 
-    public void get(final Context pContext, final Iterable<Long> pIds, @Nullable final OnSuccessListener<Collection<User>> pSuccessListener, @Nullable final OnFailureListener pFailureListener) {
+    public void get(final Context pContext, final Iterable<Long> pIds, @Nullable final OnSuccessListener<List<User>> pSuccessListener, @Nullable final OnFailureListener pFailureListener) {
 
         final String ids = StringUtils.glue(pIds, ",");
         final String url = new UrlBuilder()
@@ -26,7 +27,7 @@ public class UserManager {
                 .addParameter(UrlParameters.FIELDS, UrlParameters.PHOTO_MAX, UrlParameters.ONLINE)
                 .build();
 
-        final ContentManager contentManager = new ContentManager<Collection<User>>()
+        final ContentManager contentManager = new ContentManager<List<User>>()
                 .setUrl(url)
                 .setParser(new UserListParser())
                 .setSuccessListener(pSuccessListener)
@@ -36,7 +37,7 @@ public class UserManager {
 
     public static class Sync {
 
-        public Collection<User> get(final Context pContext, final Iterable<Long> pIds, final OnFailureListener pFailureListener) {
+        public List<User> get(final Context pContext, final Iterable<Long> pIds, final OnFailureListener pFailureListener) {
 
             final String ids = StringUtils.glue(pIds, ",");
             final String url = new UrlBuilder()
@@ -45,7 +46,7 @@ public class UserManager {
                     .addParameter(UrlParameters.FIELDS, UrlParameters.PHOTO_MAX, UrlParameters.ONLINE)
                     .build();
 
-            final ContentManager<Collection<User>> contentManager = new ContentManager<Collection<User>>()
+            final ContentManager<List<User>> contentManager = new ContentManager<List<User>>()
                     .setUrl(url)
                     .setParser(new UserListParser())
                     .setFailureListener(pFailureListener);

@@ -14,6 +14,10 @@ public interface Message {
 
     Chat getChat();
 
+    Receiver getDialogReceiver();
+
+    boolean isOut();
+
     final class Impl implements Message {
 
         private final String mText;
@@ -21,6 +25,7 @@ public interface Message {
         private final Receiver mReceiver;
         private final long mId;
         private final Chat mChat;
+        private final boolean mOut;
 
         private Impl(final Builder pBuilder) {
             mText = pBuilder.mText;
@@ -28,6 +33,7 @@ public interface Message {
             mReceiver = pBuilder.mReceiver;
             mId = pBuilder.mId;
             mChat = pBuilder.mChat;
+            mOut = pBuilder.mOut;
         }
 
         @Override
@@ -54,6 +60,16 @@ public interface Message {
         public Chat getChat() {
             return mChat;
         }
+
+        @Override
+        public Receiver getDialogReceiver() {
+            return mChat != null ? mChat : mReceiver;
+        }
+
+        @Override
+        public boolean isOut() {
+            return mOut;
+        }
     }
 
     class Builder {
@@ -63,6 +79,7 @@ public interface Message {
         private Receiver mReceiver;
         private long mId;
         private Chat mChat;
+        private boolean mOut;
 
         public Builder setText(final String pText) {
             mText = pText;
@@ -86,6 +103,11 @@ public interface Message {
 
         public Builder setChat(final Chat pChat) {
             mChat = pChat;
+            return this;
+        }
+
+        public Builder setOut(final boolean pOut) {
+            mOut = pOut;
             return this;
         }
 

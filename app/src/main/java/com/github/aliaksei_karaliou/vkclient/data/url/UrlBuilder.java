@@ -42,7 +42,7 @@ public class UrlBuilder {
     }
 
     public String build() {
-        addParameter(UrlParameters.ACCESS_TOKEN, UserInfo.getAccessToken());
+        addParameter(UrlParameters.ACCESS_TOKEN, UserInfo.getInstance().getAccessToken());
         addParameter(UrlParameters.VERSION, mApiVersion);
 
         final String parameters = StringUtils.glue(mParameters, "&");
